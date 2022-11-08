@@ -9,6 +9,8 @@ from MainMenu import MainMenu
 from ResultMenu import ResultMenu
 from DataCollection import DataCollection
 from NeuralNetHolder import NeuralNetHolder
+from random import random
+from random import seed
 
 class GameLoop:
 
@@ -131,6 +133,7 @@ class GameLoop:
                     if (self.prediction_cycle >= 0): 
                         input_row = data_collector.get_input_row(self.lander, self.surface, self.controller)
                         # nn_prediction = [x_vel, y_vel]
+                        print(input_row)
                         nn_prediction = self.neuralnet.predict(input_row)
                         # reset controls
                         self.controller.set_up(False)
