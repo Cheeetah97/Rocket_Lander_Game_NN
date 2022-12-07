@@ -6,7 +6,7 @@ seed(1)
 
 #%%
 # Read DataSet
-data = open("M:/NN_and_Deep_Learning/Individual_Project/Assignment Code/Game_Data.csv",'r')
+data = open("E:/Masters/NN_and_Deep_Learning/Individual_Project/Assignment Code/Game_Data.csv",'r')
 
 d_set = []
 for row in data:

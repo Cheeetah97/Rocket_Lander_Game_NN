@@ -12,7 +12,7 @@ class NeuralNetHolder:
         # WRITE CODE TO PROCESS INPUT ROW AND PREDICT X_Velocity and Y_Velocity
         # Input Row is String A,B
         
-        trained_model = open("M:/NN_and_Deep_Learning/Individual_Project/Assignment Code/Model2.txt",'r')
+        trained_model = open("E:/Masters/NN_and_Deep_Learning/Individual_Project/Assignment Code/Model2.txt",'r')
         for row in trained_model:
             trained_model = ast.literal_eval(row)
         
@@ -24,9 +24,16 @@ class NeuralNetHolder:
 
         input_row_scaled = x_scaler.transform([[float(x) for x in input_row.split(",")]])
         
-        simple_nn = NeuralNetwork()
-        output_row = simple_nn.predict(input_row_scaled[0],trained_model)
-        output_row_scaled = y_scaler.inverse_transform([output_row])
+        if input_row_scaled[0][0] > 0:
+            input_row_scaled[0][0] = -input_row_scaled[0][0]
+            simple_nn = NeuralNetwork()
+            output_row = simple_nn.predict(input_row_scaled[0],trained_model)
+            output_row[0] = -output_row[0]
+            output_row_scaled = y_scaler.inverse_transform([output_row])
+        else:
+            simple_nn = NeuralNetwork()
+            output_row = simple_nn.predict(input_row_scaled[0],trained_model)
+            output_row_scaled = y_scaler.inverse_transform([output_row])
         return output_row_scaled[0]
     
     

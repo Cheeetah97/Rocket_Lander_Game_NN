@@ -1,4 +1,4 @@
-from random import random
+from random import random,shuffle
 import math
 
 class NeuralNetwork:
@@ -82,6 +82,8 @@ class NeuralNetwork:
         
         for epoch in range(epochs):
             sum_error = 0
+            # if epoch > 0:
+            #     shuffle(d_set)
             for row in d_set:
                 expected = row[-2:]
                 row = row[:-2]
@@ -91,7 +93,7 @@ class NeuralNetwork:
                 self._update_weights(row)
             print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error))
             
-        with open('M:/NN_and_Deep_Learning/Individual_Project/Assignment Code/Model2.txt','w') as fp:
+        with open('E:/Masters/NN_and_Deep_Learning/Individual_Project/Assignment Code/Model2.txt','w') as fp:
             fp.write(str(self.network))
             print('############ Model Saved! ##############')
             
